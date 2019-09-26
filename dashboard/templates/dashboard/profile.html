@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}Profile - {{ user }}{% endblock %}
+{% block profile_active %}active{% endblock %}
+
+{% block content %}
+<h2>Welcome, {{ user }}</h2>
+{% endblock %}

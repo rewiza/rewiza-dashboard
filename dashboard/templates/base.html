@@ -1,0 +1,82 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %} | Rewiza Services</title>
+
+  {% block head %}
+  {% include 'material/includes/material_css.html' %}
+  {% block js %}
+  <script src="{% static 'material/js/jquery.js' %}"></script>
+  <script src="{% static 'material/js/turbolinks.js' %}"></script>
+  {% include 'material/includes/material_js.html' %}
+  {% block extrajs %}{% endblock %}
+  {% endblock %}
+  {% block extrahead %}{% endblock %}
+  {% endblock %}
+</head>
+
+<body class="valign-wrapper2">
+  <nav class="global-nav light-blue darken-4" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Rewiza</a>
+      <ul class="right hide-on-med-and-down">
+        <li class="{% block services_active %}{% endblock %}"><a href="{% url 'dashboard:service_list' %}">Services</a></li>
+        {% if user.is_authenticated %}
+        <li class="{% block profile_active %}{% endblock %}"><a href="{% url 'account_profile' %}">Profile</a></li>
+        <li class="{% block logout_active %}{% endblock %}"><a href="{% url 'account_logout' %}">Sign out</a></li>
+        {% else %}
+        <li class="{% block login_active %}{% endblock %}"><a href="{% url 'account_login' %}">Sign in</a></li>
+        {% endif %}
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#">Services</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  {% block intro %}
+  {% endblock %}
+
+  <div class="container">
+    <div class="section">
+      {% block content %}
+      {% endblock content %}
+    </div>
+    <br><br>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Rewiza Bio</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project... just because <b>we want</b>.</p>
+        </div>
+        <div class="col l6 s12">
+          <h5 class="white-text">Connect with Rewiza</h5>
+          <ul>
+            <li><a class="white-text" href="#!">wijnhorst@rewiza.cz</a></li>
+            <li><a class="white-text" href="#!">resl@rewiza.cz</a></li>
+            <li><a class="white-text" href="#!">zahradnik@rewiza.cz</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Copyright © 2019 | Rewiza.cz
+      </div>
+    </div>
+  </footer>
+  <script>
+  $(function(){
+    $(".auth-form input").removeAttr("placeholder");
+  });
+  </script>
+</body>
+
+</html>
