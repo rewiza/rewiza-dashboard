@@ -4,6 +4,7 @@ services:
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:37803
+    restart: unless-stopped
     volumes:
       - .:/code
     ports:
