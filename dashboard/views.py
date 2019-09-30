@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseForbidden, HttpResponse
 from django.contrib.auth.decorators import login_required
+from .models import Service
 
 def home(request):
     return render(request, 'dashboard/home.html')
@@ -16,4 +17,6 @@ def service_auth_check(request):
         return HttpResponseForbidden()
 
 def service_list(request):
-    return render(request, 'dashboard/service/service_list.html')
+    context = {}
+    context['services'] = Service.objects.all()
+    return render(request, 'dashboard/service/service_list.html', context)

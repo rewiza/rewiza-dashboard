@@ -1,11 +1,33 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n thumbnail %}
 
 {% block title %}Services{% endblock %}
 {% block services_active %}active{% endblock %}
 
 {% block content %}
 <h1>Services</h1>
+<hr>
+<br>
+{% for service in services %}
+<div class="col s12 m7">
+    <h4 class="header">{{ service.name }}</h4>
+    <div class="card horizontal">
+        <div class="card-image">
+        {% thumbnail service.image "500x250" crop="center" as thumb %}
+        <a target="_blank" href="{{ service.link }}"><img class="thumb" src="{{ thumb.url }}"></a>
+        {% endthumbnail%}
+        </div>
+        <div class="card-stacked">
+        <div class="card-content">
+            <p>{{ service.description }}</p>
+        </div>
+        <div class="card-action">
+            <a target="_blank" href="{{ service.link }}">Visit</a>
+        </div>
+        </div>
+    </div>
+</div>
+<br>
+{% endfor %}
 
-<p>List of services...</p>
 {% endblock %}

@@ -1,3 +1,5 @@
 Django>=2.0,<3.0
 django-allauth
 django-material
+Pillow
+sorl-thumbnail
