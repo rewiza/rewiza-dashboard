@@ -21,7 +21,7 @@
   {% endblock %}
 </head>
 
-<body class="valign-wrapper2">
+<body class="valign-wrapper2" data-turbolinks="false">
   <nav class="global-nav light-blue darken-4" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Rewiza</a>
       <ul class="right hide-on-med-and-down">
@@ -82,10 +82,13 @@
   </footer>
   <script>
   $(function(){
-    M.AutoInit();
     $(".auth-form input").removeAttr("placeholder");
-    $('.sidenav').sidenav();
+    M.AutoInit();
   });
+  setTimeout(function(){
+    $('.sidenav').sidenav();
+    M.updateTextFields();
+  }, 20);
   </script>
 </body>
 
