@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseForbidden, HttpResponse
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .models import Service
 
@@ -20,3 +20,7 @@ def service_list(request):
     context = {}
     context['services'] = Service.objects.all()
     return render(request, 'dashboard/service/service_list.html', context)
+
+def idp_redirect(request, value):
+    path = request.path.replace("/idp/redirect/", "https://")
+    return HttpResponseRedirect(path)
