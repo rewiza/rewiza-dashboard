@@ -41,8 +41,8 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p> {% endco
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
   <br>
-  <button class="btn" type="submit">{% trans "Sign In" %}</button>
-  <a class="btn" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  <button class="waves-effect waves-light btn" type="submit">{% trans "Sign In" %}</button>
+  <a class="waves-effect waves-light btn" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
 </form>
 
 {% endblock %}

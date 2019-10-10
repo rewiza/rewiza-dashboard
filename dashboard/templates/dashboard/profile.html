@@ -6,4 +6,8 @@
 
 {% block content %}
 <h2>Welcome, {{ user }}</h2>
+
+<p>{{ user.email }}</p>
+
+<a href="{% url 'account_change_password' %}" class="waves-effect waves-light btn">Change password</a>
 {% endblock %}
