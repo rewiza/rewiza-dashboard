@@ -1,4 +1,4 @@
-{% load static %}
+{% load i18n static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,9 +28,17 @@
         <li class="{% block services_active %}{% endblock %}"><a href="{% url 'dashboard:service_list' %}">Services</a></li>
         {% if user.is_authenticated %}
         <li class="{% block profile_active %}{% endblock %}"><a href="{% url 'account_profile' %}">Profile</a></li>
-        <li class="{% block logout_active %}{% endblock %}"><a href="{% url 'account_logout' %}">Sign out</a></li>
+        <li class="">
+          <form id="logout_form" method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
+          </form>
+          <a onclick="document.getElementById('logout_form').submit();">{% trans 'Sign Out' %}</a>
+        </li>
         {% else %}
-        <li class="{% block login_active %}{% endblock %}"><a href="{% url 'account_login' %}">Sign in</a></li>
+        <li><a href="{% url 'account_login' %}">Sign in</a></li>
         {% endif %}
       </ul>
 
@@ -38,7 +46,15 @@
         <li><a href="{% url 'dashboard:service_list' %}">Services</a></li>
         {% if user.is_authenticated %}
         <li><a href="{% url 'account_profile' %}">Profile</a></li>
-        <li><a href="{% url 'account_logout' %}">Sign out</a></li>
+        <li class="">
+          <form id="logout_form" method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            {% endif %}
+          </form>
+          <a onclick="document.getElementById('logout_form').submit();">{% trans 'Sign Out' %}</a>
+        </li>
         {% else %}
         <li><a href="{% url 'account_login' %}">Sign in</a></li>
         {% endif %}
