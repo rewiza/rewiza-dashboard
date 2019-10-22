@@ -3,3 +3,4 @@ django-allauth
 django-material
 Pillow
 sorl-thumbnail
+gunicorn==19.9.0
