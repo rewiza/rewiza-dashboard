@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    command: gunicorn --bind 0.0.0.0:8080 rewiza_services.wsgi
+    restart: on-failure
+    volumes:
+      - .:/code
+    ports:
+      - "37803:37803"
