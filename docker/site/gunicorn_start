@@ -13,5 +13,4 @@ export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 exec gunicorn ${DJANGO_WSGI_MODULE}:application \
   --name $NAME \
   --workers $NUM_WORKERS \
-  --bind=0.0.0.0:37803
-
+  --bind=0.0.0.0:8000
