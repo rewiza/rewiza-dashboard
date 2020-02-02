@@ -1,7 +1,10 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-
+static
+media
+venv
+local_settings.py
 leonardo/local/.secret_key_store
 
 docs/build/*

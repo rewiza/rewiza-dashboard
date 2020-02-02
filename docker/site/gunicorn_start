@@ -1,0 +1,17 @@
+#!/bin/bash
+
+NAME="rewiza-dashboard"
+DJANGODIR=/code
+NUM_WORKERS=1
+DJANGO_SETTINGS_MODULE=rewiza_services.settings
+DJANGO_WSGI_MODULE=rewiza_services.wsgi
+
+export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+export PYTHONPATH=$DJANGODIR:$PYTHONPATH
+
+# Start your Django Unicorn
+exec gunicorn ${DJANGO_WSGI_MODULE}:application \
+  --name $NAME \
+  --workers $NUM_WORKERS \
+  --bind=0.0.0.0:37803
+
