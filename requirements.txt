@@ -6,3 +6,6 @@ sorl-thumbnail
 gunicorn==19.9.0
 python-memcached
 psycopg2
+-e git+https://github.com/django-dbbackup/django-dbbackup.git#egg=dbbackup
+django-storages
+dropbox

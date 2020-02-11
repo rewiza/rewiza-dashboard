@@ -10,4 +10,16 @@
 <p>{{ user.email }}</p>
 
 <a href="{% url 'account_change_password' %}" class="waves-effect waves-light btn">Change password</a>
+
+<hr />
+
+<h3>Database management</h3>
+
+{% if request.user.is_superuser %}
+<a href="{% url 'dashboard:db_backup' %}" class="waves-effect waves-light btn">Backup database</a>
+<a href="{% url 'dashboard:db_restore' %}" class="waves-effect waves-light btn">Restore latest database backup</a>
+<a href="{% url 'dashboard:media_backup' %}" class="waves-effect waves-light btn">Backup media</a>
+<a href="{% url 'dashboard:media_restore' %}" class="waves-effect waves-light btn">Restore latest media</a>
+{% endif %}
+
 {% endblock %}

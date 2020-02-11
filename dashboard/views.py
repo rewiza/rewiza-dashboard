@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.http import HttpResponseForbidden, HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .models import Service
+from django.core import management
 
 def home(request):
     return render(request, 'dashboard/home.html')
@@ -24,3 +26,19 @@ def service_list(request):
 def idp_redirect(request, value):
     path = request.path.replace("/idp/redirect/", "https://")
     return HttpResponseRedirect(path)
+
+def db_backup(request):
+    management.call_command('dbbackup', '--noinput', verbosity=0)
+    return HttpResponseRedirect(reverse_lazy('account_profile'))
+
+def db_restore(request):
+    management.call_command('dbrestore', '--noinput', verbosity=0)
+    return HttpResponseRedirect(reverse_lazy('account_profile'))
+
+def media_backup(request):
+    management.call_command('mediabackup', '--noinput', verbosity=0)
+    return HttpResponseRedirect(reverse_lazy('account_profile'))
+
+def media_restore(request):
+    management.call_command('mediarestore', '--noinput', verbosity=0)
+    return HttpResponseRedirect(reverse_lazy('account_profile'))
