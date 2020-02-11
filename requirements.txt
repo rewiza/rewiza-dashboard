@@ -4,3 +4,5 @@ django-material
 Pillow
 sorl-thumbnail
 gunicorn==19.9.0
+python-memcached
+psycopg2
