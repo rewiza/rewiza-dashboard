@@ -8,7 +8,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}{% endblock %} | Rewiza Services</title>
-  <link rel="icon" sizes="32x32" href="{% static 'img/favicon.ico' %}">
   {% block head %}
   {% include 'material/includes/material_css.html' %}
   {% block js %}
@@ -19,6 +18,8 @@
   {% endblock %}
   {% block extrahead %}{% endblock %}
   {% endblock %}
+  <link rel="shortcut icon" href="{% static 'img/favicon.png' %}">
+  <link rel="icon" sizes="192x192" href="{% static 'img/favicon.png' %}">
 </head>
 
 <body class="valign-wrapper2" data-turbolinks="false">
