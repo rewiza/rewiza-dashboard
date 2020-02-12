@@ -4,6 +4,8 @@ from django.http import HttpResponseForbidden, HttpResponse, HttpResponseRedirec
 from django.contrib.auth.decorators import login_required
 from .models import Service
 from django.core import management
+from django.conf import settings
+import requests
 
 def home(request):
     return render(request, 'dashboard/home.html')
@@ -28,11 +30,15 @@ def idp_redirect(request, value):
     return HttpResponseRedirect(path)
 
 def db_backup(request):
-    management.call_command('dbbackup', '--noinput', verbosity=0)
+    url = settings.GITLAB_PROJECT_JOB
+    headers = {'PRIVATE-TOKEN': settings.GITLAB_API_ACCESS_TOKEN}
+    r = requests.post(url, headers=headers)
     return HttpResponseRedirect(reverse_lazy('account_profile'))
 
 def db_restore(request):
-    management.call_command('dbrestore', '--noinput', verbosity=0)
+    url = settings.GITLAB_PROJECT_JOB
+    headers = {'PRIVATE-TOKEN': settings.GITLAB_API_ACCESS_TOKEN}
+    r = requests.post(url, headers=headers)
     return HttpResponseRedirect(reverse_lazy('account_profile'))
 
 def media_backup(request):
