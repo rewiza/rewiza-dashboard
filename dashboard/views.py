@@ -2,10 +2,12 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.http import HttpResponseForbidden, HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import Service
 from django.core import management
 from django.conf import settings
 import requests
+from .models import Service
+from .utils import trigger_gitlab_job
+
 
 def home(request):
     return render(request, 'dashboard/home.html')
@@ -30,15 +32,11 @@ def idp_redirect(request, value):
     return HttpResponseRedirect(path)
 
 def db_backup(request):
-    url = settings.GITLAB_PROJECT_JOB
-    headers = {'PRIVATE-TOKEN': settings.GITLAB_API_ACCESS_TOKEN}
-    r = requests.post(url, headers=headers)
+    trigger_gitlab_job('echo')
     return HttpResponseRedirect(reverse_lazy('account_profile'))
 
 def db_restore(request):
-    url = settings.GITLAB_PROJECT_JOB
-    headers = {'PRIVATE-TOKEN': settings.GITLAB_API_ACCESS_TOKEN}
-    r = requests.post(url, headers=headers)
+    trigger_gitlab_job('echo')
     return HttpResponseRedirect(reverse_lazy('account_profile'))
 
 def media_backup(request):

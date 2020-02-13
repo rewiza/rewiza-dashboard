@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n dashboard_tags %}
 
 {% block title %}Profile - {{ user }}{% endblock %}
 {% block profile_active %}active{% endblock %}
@@ -13,9 +13,15 @@
 
 <hr />
 
-<h3>Database management</h3>
 
 {% if request.user.is_superuser %}
+
+{% if request.user|uses_default_password %}
+<p>You are using default admin password, <a href="{% url 'account_change_password' %}">change it</a></p>
+{% endif %}
+
+<h3>Database management</h3>
+
 <a href="{% url 'dashboard:db_backup' %}" class="waves-effect waves-light btn">Backup database</a>
 <a href="{% url 'dashboard:db_restore' %}" class="waves-effect waves-light btn">Restore latest database backup</a>
 <a href="{% url 'dashboard:media_backup' %}" class="waves-effect waves-light btn">Backup media</a>
