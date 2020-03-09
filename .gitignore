@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 static
+.vscode
 media
 venv
 local_settings.py
