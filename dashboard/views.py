@@ -28,6 +28,14 @@ def service_list(request):
     return render(request, 'dashboard/service/service_list.html', context)
 
 def idp_redirect(request, value):
+    """Redirects to any path
+
+    :param value: Path to redirect to
+    :type value: string (required)
+
+    :return: Http response redirect
+    :rtype: Http response
+    """
     path = request.path.replace("/idp/redirect/", "https://")
     return HttpResponseRedirect(path)
 
